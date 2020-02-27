@@ -20,7 +20,7 @@ Keys are store in a 'keys.py' file in the same directory as the main script, and
 
 .. code:: 
 
-   consumer_key = '123456'
+    consumer_key = '123456'
     consumer_secret = '654321'
     access_token = '13579'
     access_token_secret = '24680'
