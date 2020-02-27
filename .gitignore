@@ -1,0 +1,12 @@
+# Executables
+*.exe
+*.out
+*.app
+
+bot/lyrics
+
+keys.py
+
+.vscode
+
+__pycache__
