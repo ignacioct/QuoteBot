@@ -5,9 +5,8 @@ Quoter Bot
 ===============================================================================
 :Author: `Ignacio Talavera Cepeda <https://github.com/ignacioct>`_
 
-This is a Twitter Bot inspired on `Vita & Virgina Bot <https://twitter.com/VitaVirginiaBot>`_
-
-which tweets a quote from a random .txt files inside the lyrics folder. 
+This is a Twitter Bot inspired on `Vita & Virgina Bot <https://twitter.com/VitaVirginiaBot>`_ which 
+tweets a quote from a random .txt files inside the lyrics folder. 
 In those files, each quote must start with a '$' symbol and end with a '%' symbol, like
 in the following example:
 
