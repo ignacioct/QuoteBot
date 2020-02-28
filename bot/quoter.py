@@ -1,8 +1,9 @@
-#Version 1.0: funciona de forma local, no puede twittear duplicados
+#Version 1.0: funciona de forma local, evita duplicados usando aleatorio
 
 import random, os
 
 from tweepy.auth import OAuthHandler, API
+import tweepy
 from keys import * #there must be a keys.py with the keys
 
 
@@ -14,11 +15,9 @@ auth.set_access_token(access_token, access_token_secret)
 api = API(auth)
 
 #   Open Random Directory Function
-#       @input: string with the name of the folder in the current directory
 #       @output: stream to the selected .txt file containing the lyrics 
-def openRndDir (folder):
-    os.chdir("bot")
-    os.chdir(folder)
+def openRndDir():
+    
     dir = os.getcwd()
     files = os.listdir(dir) 
     random_file = random.choice(files)
@@ -38,14 +37,20 @@ def getRndQuote (file):
 #       @input: string with the name of the folder in the current directory
 #       @output: string of the selected quote
 def getQuote(folder):
-    return getRndQuote(openRndDir(folder))
+    return getRndQuote(openRndDir())
 
 
 def main():
-    
-    quote = getQuote("lyrics")
-    print (quote)
-    api.update_status(quote) #tweet to your TL
+    os.chdir("bot")
+    os.chdir("lyrics")
+    while True:
+        quote = getQuote("lyrics")
+        print (quote)
+        try:
+            api.update_status(quote) #tweet to your TL
+            break
+        except tweepy.TweepError:
+            print ("Error: Tweet duplicated\nChoosing another quote")
 
 if __name__== "__main__":
     main()
