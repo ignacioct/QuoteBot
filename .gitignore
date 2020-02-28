@@ -3,6 +3,7 @@
 *.out
 *.app
 
+
 bot/lyrics
 
 keys.py

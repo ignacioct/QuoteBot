@@ -1,3 +1,5 @@
+#Version 1.0: funciona de forma local, no puede twittear duplicados
+
 import random, os
 
 from tweepy.auth import OAuthHandler, API
@@ -15,6 +17,7 @@ api = API(auth)
 #       @input: string with the name of the folder in the current directory
 #       @output: stream to the selected .txt file containing the lyrics 
 def openRndDir (folder):
+    os.chdir("bot")
     os.chdir(folder)
     dir = os.getcwd()
     files = os.listdir(dir) 
@@ -38,11 +41,9 @@ def getQuote(folder):
     return getRndQuote(openRndDir(folder))
 
 
-
-
 def main():
+    
     quote = getQuote("lyrics")
-
     print (quote)
     api.update_status(quote) #tweet to your TL
 
