@@ -34,9 +34,8 @@ def getRndQuote (file):
     return quote
 
 #   Get Quote Function
-#       @input: string with the name of the folder in the current directory
 #       @output: string of the selected quote
-def getQuote(folder):
+def getQuote():
     return getRndQuote(openRndDir())
 
 
@@ -44,10 +43,11 @@ def main():
     os.chdir("bot")
     os.chdir("lyrics")
     while True:
-        quote = getQuote("lyrics")
-        print (quote)
+        quote = getQuote()
+        
         try:
-            api.update_status(quote) #tweet to your TL
+            #api.update_status(quote) #tweet to your TL
+            print (quote)
             break
         except tweepy.TweepError:
             print ("Error: Tweet duplicated\nChoosing another quote")
