@@ -1,11 +1,11 @@
-#Version 1.0: funciona de forma local, evita duplicados usando aleatorio
+#Version 2.: works on Google Cloud Platform
 
 import random, os
 
 from tweepy.auth import OAuthHandler, API
 import tweepy
 from keys import * #there must be a keys.py with the keys
-
+import time
 
 
 auth = OAuthHandler(consumer_key, consumer_secret)
@@ -28,7 +28,7 @@ def openRndDir():
 #       @output: string of the selected quote
 def getRndQuote (file):
     quote = file.read()
-    line = random.randrange(1, quote.count('$'), 1)
+    line = random.randrange(1, quote.count('$')+1, 1)
     quote = quote.split('$')[line][:-2]
     file.close()
     return quote
@@ -42,15 +42,22 @@ def getQuote():
 def main():
     os.chdir("bot")
     os.chdir("lyrics")
+    
     while True:
         quote = getQuote()
         
         try:
-            #api.update_status(quote) #tweet to your TL
+            api.update_status(quote) #tweet to your TL
             print (quote)
-            break
+            time.sleep(10800)   #each 3 hours
+
+            
         except tweepy.TweepError:
             print ("Error: Tweet duplicated\nChoosing another quote")
+        
+        
+        
+
 
 if __name__== "__main__":
     main()
