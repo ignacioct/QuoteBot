@@ -7,7 +7,7 @@ def main():
 
     dir = os.getcwd()
     
-    file= open("hustlers.txt", "r")
+    file= open("que_mas_da.txt", "r")
 
     quote = file.read()
     for i in range (1, quote.count('$')+1, 1):
